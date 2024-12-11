@@ -1,6 +1,7 @@
 // index.js
 const express = require('express');
 const { redisClient } = require('./shared/redis');
+const { route } = require('./src/routes/routes');
 
 async function main() {
   const app = express();
@@ -12,6 +13,8 @@ async function main() {
 
     // Middleware
     app.use(express.json());
+
+    app.use("/api/v1/",route);
 
     // Sample endpoint
     app.get('/', (req, res) => {
